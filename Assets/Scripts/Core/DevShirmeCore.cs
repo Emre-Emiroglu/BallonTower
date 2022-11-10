@@ -41,5 +41,6 @@ namespace DevShirme.Core
 }
 public enum ManagerType: int
 {
-    PoolManager = 0
+    PoolManager = 0,
+    GameManager = 1
 }
