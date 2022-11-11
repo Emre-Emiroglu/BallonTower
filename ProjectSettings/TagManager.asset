@@ -3,15 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ballon
+  - BallonAttach
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ballon
   - Water
   - UI
-  - 
+  - BallonAttach
   - 
   - 
   - 
