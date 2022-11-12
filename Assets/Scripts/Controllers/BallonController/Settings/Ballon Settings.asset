@@ -16,8 +16,8 @@ MonoBehaviour:
   minYPos: 5
   maxXPos: 1
   minXPos: -1
-  maxZPos: 0.1
-  minZPos: -0.1
+  maxZPos: 0.2
+  minZPos: -0.2
   risingDuration: 1
   risingCurve:
     serializedVersion: 2
@@ -25,8 +25,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2
-      outSlope: 2
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -43,4 +43,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  spawnDelay: 1
+  spawnDelay: 2

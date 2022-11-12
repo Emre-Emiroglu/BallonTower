@@ -8,7 +8,10 @@ using DevShirme.PoolModule;
 public class BallonController : DevShirmeController
 {
     #region Fields
+    [Header("Componenets")]
+    [SerializeField] private Magnet magnet;
     [SerializeField] private Transform ballonAttachObj;
+    [Header("Toggle")]
     [SerializeField] private bool canSpawn = false;
     private BallonSettings bs;
     private PoolManager pm;
@@ -21,6 +24,7 @@ public class BallonController : DevShirmeController
         bs = settings as BallonSettings;
         pm = DevShirmeCore.Instance.GetAManager(ManagerType.PoolManager) as PoolManager;
         timer = 0f;
+        magnet.Init();
     }
     #endregion
 

@@ -6,7 +6,7 @@ using DevShirme.PoolModule;
 public class Ballon : PoolObject
 {
     #region Fields
-    [Header("Ballon Fields")]
+    [Header("Components")]
     [SerializeField] private LineRenderer lr;
     [SerializeField] private Collider mainCol;
     private Coroutine risingCoroutine;
@@ -23,7 +23,7 @@ public class Ballon : PoolObject
 
         clearRisingCoroutine();
         transform.localScale = Vector3.zero;
-        //mainCol.enabled = false;
+        mainCol.enabled = false;
         lr.enabled = false;
     }
     public override void DespawnObj()
@@ -41,12 +41,12 @@ public class Ballon : PoolObject
     private IEnumerator risingAnim(Vector3 targetPos, float duration, AnimationCurve curve)
     {
         float t = 0f;
-        Vector3 orgPos = transform.position;
+        Vector3 orgPos = transform.localPosition;
         Vector3 targetScale = Vector3.one;
         while (t < duration)
         {
             t += Time.deltaTime;
-            transform.position = Vector3.Lerp(orgPos, targetPos, curve.Evaluate(t / duration));
+            transform.localPosition = Vector3.Lerp(orgPos, targetPos, curve.Evaluate(t / duration));
             transform.localScale = Vector3.Lerp(Vector3.zero, targetScale, curve.Evaluate(t / duration));
             yield return null;
         }
@@ -66,7 +66,8 @@ public class Ballon : PoolObject
         if (InUse && lr.enabled)
         {
             lr.SetPosition(0, Vector3.zero);
-            lr.SetPosition(1, transform.position * -1);
+            Vector3 bottomPos = transform.localPosition * -1f;
+            lr.SetPosition(1, bottomPos);
         }
     }
     #endregion
