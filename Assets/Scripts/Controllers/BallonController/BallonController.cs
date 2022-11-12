@@ -33,6 +33,9 @@ public class BallonController : DevShirmeController
     {
         Ballon ballon = pm.GetObj("Ballon", ballonAttachObj.position, ballonAttachObj.gameObject) as Ballon;
 
+        Color randomColor = bs.GetRandomColor();
+        ballon.SetMaterialColor(randomColor);
+
         Vector3 targetPos = bs.GetRandomRisingPos();
         ballon.Rising(targetPos, bs.RisingDuration, bs.RisingCurve);
     }

@@ -34,8 +34,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -44,3 +44,9 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   spawnDelay: 2
+  Colors:
+  - {r: 0, g: 0.093925476, b: 1, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0.28057456, a: 1}
+  - {r: 1, g: 0.78909576, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0.84413767, a: 1}

@@ -9,6 +9,7 @@ public class Ballon : PoolObject
     [Header("Components")]
     [SerializeField] private LineRenderer lr;
     [SerializeField] private Collider mainCol;
+    [SerializeField] private MeshRenderer mr;
     private Coroutine risingCoroutine;
     #endregion
 
@@ -16,6 +17,9 @@ public class Ballon : PoolObject
     public override void initilaze()
     {
         base.initilaze();
+        Material original = mr.sharedMaterial;
+        Material cloneMat = Instantiate(original);
+        mr.sharedMaterial = cloneMat;
     }
     public override void SpawnObj(Vector3 pos, bool useRotation, Quaternion rot, bool useScale, Vector3 scale, bool setParent = false, GameObject p = null)
     {
@@ -29,6 +33,13 @@ public class Ballon : PoolObject
     public override void DespawnObj()
     {
         base.DespawnObj();
+    }
+    #endregion
+
+    #region MaterialColor
+    public void SetMaterialColor(Color newColor)
+    {
+        mr.sharedMaterial.color = newColor;
     }
     #endregion
 
