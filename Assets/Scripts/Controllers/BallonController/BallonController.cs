@@ -8,7 +8,7 @@ using DevShirme.PoolModule;
 public class BallonController : DevShirmeController
 {
     #region Fields
-    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private Transform ballonAttachObj;
     [SerializeField] private bool canSpawn = false;
     private BallonSettings bs;
     private PoolManager pm;
@@ -27,10 +27,10 @@ public class BallonController : DevShirmeController
     #region Executes
     private void spawnBallon()
     {
-        float yPos = Random.Range(bs.MinYPos, bs.MaxYPos);
-        float xPos = Random.Range(bs.MinXPos, bs.MaxXPos);
-        Ballon ballon = pm.GetObj("Ballon", spawnPoint.position) as Ballon;
-        ballon.Rising(yPos, xPos, bs.RisingDuration, bs.RisingCurve);
+        Ballon ballon = pm.GetObj("Ballon", ballonAttachObj.position, ballonAttachObj.gameObject) as Ballon;
+
+        Vector3 targetPos = bs.GetRandomRisingPos();
+        ballon.Rising(targetPos, bs.RisingDuration, bs.RisingCurve);
     }
     private void Update()
     {

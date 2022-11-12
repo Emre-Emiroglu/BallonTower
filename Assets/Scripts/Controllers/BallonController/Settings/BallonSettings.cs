@@ -12,6 +12,8 @@ public class BallonSettings : DevSettings
     [SerializeField] private float minYPos = 5f;
     [SerializeField] private float maxXPos = 1f;
     [SerializeField] private float minXPos = -1f;
+    [SerializeField] private float maxZPos = .1f;
+    [SerializeField] private float minZPos = -.1f;
     [SerializeField] private float risingDuration = 1f;
     [SerializeField] private AnimationCurve risingCurve;
     [Header("Spawn Settings")]
@@ -19,10 +21,13 @@ public class BallonSettings : DevSettings
     #endregion
 
     #region Getters
-    public float MaxYPos => maxYPos;
-    public float MinYPos => minYPos;
-    public float MaxXPos => maxXPos;
-    public float MinXPos => minXPos;
+    public Vector3 GetRandomRisingPos()
+    {
+        float x = Random.Range(minXPos, maxXPos);
+        float y = Random.Range(minYPos, maxYPos);
+        float z = Random.Range(minZPos, maxZPos);
+        return new Vector3(x, y, z);
+    }
     public float RisingDuration => risingDuration;
     public AnimationCurve RisingCurve => risingCurve;
     public float SpawnDelay => spawnDelay;

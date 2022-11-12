@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a1c3b067120643429ea521f051c5d57, type: 3}
   m_Name: Ballon Settings
   m_EditorClassIdentifier: 
-  maxYPos: 5
-  minYPos: 4
+  maxYPos: 6
+  minYPos: 5
   maxXPos: 1
   minXPos: -1
+  maxZPos: 0.1
+  minZPos: -0.1
   risingDuration: 1
   risingCurve:
     serializedVersion: 2

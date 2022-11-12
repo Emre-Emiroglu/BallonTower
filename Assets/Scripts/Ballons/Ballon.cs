@@ -6,10 +6,10 @@ using DevShirme.PoolModule;
 public class Ballon : PoolObject
 {
     #region Fields
-    [SerializeField] private Rigidbody rb;
+    [Header("Ballon Fields")]
+    [SerializeField] private LineRenderer lr;
     [SerializeField] private Collider mainCol;
     private Coroutine risingCoroutine;
-    private bool isActive;
     #endregion
 
     #region Core
@@ -23,28 +23,25 @@ public class Ballon : PoolObject
 
         clearRisingCoroutine();
         transform.localScale = Vector3.zero;
-        mainCol.enabled = false;
-        isActive = true;
+        //mainCol.enabled = false;
+        lr.enabled = false;
     }
     public override void DespawnObj()
     {
         base.DespawnObj();
-        isActive = false;
     }
     #endregion
 
-    #region Executes
-    public void Rising(float targetYPos, float targetXPos, float duration, AnimationCurve curve)
+    #region RisingAnim
+    public void Rising(Vector3 targetPos, float duration, AnimationCurve curve)
     {
         clearRisingCoroutine();
-
-        risingCoroutine = StartCoroutine(risingAnim(targetYPos, targetXPos, duration, curve));
+        risingCoroutine = StartCoroutine(risingAnim(targetPos, duration, curve));
     }
-    private IEnumerator risingAnim(float targetYPos, float targetXPos, float duration, AnimationCurve curve)
+    private IEnumerator risingAnim(Vector3 targetPos, float duration, AnimationCurve curve)
     {
         float t = 0f;
         Vector3 orgPos = transform.position;
-        Vector3 targetPos = new Vector3(targetXPos, targetYPos, orgPos.z);
         Vector3 targetScale = Vector3.one;
         while (t < duration)
         {
@@ -53,8 +50,8 @@ public class Ballon : PoolObject
             transform.localScale = Vector3.Lerp(Vector3.zero, targetScale, curve.Evaluate(t / duration));
             yield return null;
         }
-
         mainCol.enabled = true;
+        lr.enabled = true;
     }
     private void clearRisingCoroutine()
     {
@@ -63,13 +60,22 @@ public class Ballon : PoolObject
     }
     #endregion
 
-    #region Update
-    private void FixedUpdate()
+    #region Rope
+    private void setRope()
     {
-        if (isActive)
+        if (InUse && lr.enabled)
         {
-            rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.fixedDeltaTime * 20f);
+            lr.SetPosition(0, Vector3.zero);
+            lr.SetPosition(1, transform.position * -1);
         }
     }
     #endregion
+
+    #region Updates
+    private void LateUpdate()
+    {
+        setRope();
+    }
+    #endregion
+
 }
